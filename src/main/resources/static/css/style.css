@@ -1,0 +1,17 @@
+@charset "UTF-8";
+
+.card, .alert {
+	margin: 1rem;
+}
+
+label {
+	font-weight: 500;
+}
+
+.link-custom {
+	text-decoration: none;
+}
+
+.header-title {
+	margin: 0px;
+}

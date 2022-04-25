@@ -1,0 +1,33 @@
+<th:block th:fragment="modeloexcluir">
+
+	<div class="modal fade" id="modalExcluir" tabindex="-1"
+		aria-labelledby="modalExcluir" aria-hidden="true">
+		<div class="modal-dialog">
+			<!-- Formulário -->
+			<form th:attr="data-url-base=@{/boletos}" method="POST">
+				<input type="hidden" name="_method" value="DELETE" />
+				
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="modalExcluir">Excluir</h5>
+						<button type="button" class="btn-close" data-bs-dismiss="modal"
+							aria-label="Close"></button>
+					</div>
+
+					<div class="modal-body">
+						<p></p>
+					</div>
+
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary"
+							data-bs-dismiss="modal">Não</button>
+						<button type="submit" class="btn btn-primary">Sim</button>
+					</div>
+				</div>
+				
+			</form>
+			<!-- Fim Formulário -->
+		</div>
+	</div>
+
+</th:block>

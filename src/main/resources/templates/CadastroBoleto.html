@@ -1,0 +1,91 @@
+<!--Cabeçalho-->
+<div th:replace="fragmentos/Cabecalho :: modelocabecalho"></div>
+
+<!-- Corpo -->
+<form method="POST" th:object="${boleto}" class="form-horizontal"
+	th:action="@{/boletos/salvar}">
+
+	<!-- th:action="${boleto.id == null} ? @{/boletos/salvar} : @{/boletos/atualizar}" -->
+	<!-- Mensagens -->
+	<div th:replace="fragmentos/MensagemGeral :: modelomensagemgeral"></div>
+	<div th:replace="fragmentos/MensagemErro :: modelomensagemerro"></div>
+
+	<!-- Card -->
+	<div class="card">
+
+		<!-- Card Header -->
+		<div class="card-header hstack">
+			<h5 class="header-title">Novo Boleto</h5>
+			<a class="link-custom ms-auto" th:href="@{/boletos}"> Pesquisar
+				boleto <i class="bi bi-search"></i>
+			</a>
+		</div>
+
+		<!-- Card Body -->
+		<div class="card-body ">
+			<input type="hidden" th:field="*{id}" />
+
+			<div class="row mb-3"
+				th:classappend="${#fields.hasErrors('descricao')} ? text-danger">
+				<label for="descricao" class="col-sm-2 col-form-label text-end">Descrição</label>
+				<div class="col-sm-4">
+					<input type="text" id="descricao" class="form-control"
+						th:field="*{descricao}" aria-describedby="descricao"
+						th:classappend="${#fields.hasErrors('descricao')} ? border-danger" />
+				</div>
+			</div>
+
+			<div class="row mb-3"
+				th:classappend="${#fields.hasErrors('dataVencimento')} ? text-danger">
+				<label for="vencimento" class="col-sm-2 col-form-label text-end">Data
+					de vencimento</label>
+				<div class="col-sm-2 position-relative">
+					<input type="text" id="vencimento" class="form-control position-absolute"
+						autocomplete="off" th:field="*{dataVencimento}"
+						aria-describedby="vencimento"
+						th:classappend="${#fields.hasErrors('dataVencimento')} ? border-danger"
+						data-provide="datepicker" data-date-format="dd/mm/yyyy"
+						data-date-language="pt-BR" data-date-autoclose="true"
+						data-date-today-highlight="true" />
+						<i class="bi bi-calendar2-week position-absolute top-50 start-100 translate-middle fs-4 pe-3"></i>
+				</div>
+			</div>
+
+			<div class="row mb-3"
+				th:classappend="${#fields.hasErrors('valor')} ? text-danger">
+				<label for="valor" class="col-sm-2 col-form-label text-end">Valor R$</label>
+				<div class="col-sm-2">
+					<input type="text" id="valor" class="form-control js-currency"
+						th:field="*{valor}" aria-describedby="valor"
+						th:classappend="${#fields.hasErrors('valor')} ? border-danger" />
+				</div>
+			</div>
+
+			<div class="row mb-3">
+				<label for="status" class="col-sm-2 col-form-label text-end">Status</label>
+				<div class="col-sm-2">
+					<select id="status" class="form-control" name="status" th:field="*{status}" >
+						<!-- <option value="" selected="selected" class="text-muted">selecione</option> -->
+						<option th:each="status : ${todosStatus}" 
+							th:value="${status}"
+							th:text="${status.descricao}"></option>
+					</select>
+				</div>
+			</div>
+
+			<!-- Botão Submit -->
+			<div class="row">
+				<div class="col-md-2 offset-md-2">
+					<button type="submit" class="btn btn-primary">Salvar</button>
+				</div>
+			</div>
+
+		</div>
+		<!-- Fim Card-Body -->
+	</div>
+	<!-- Fim Card -->
+</form>
+
+<!-- Rodape -->
+<div th:replace="fragmentos/Rodape :: modelorodape"></div>
+
